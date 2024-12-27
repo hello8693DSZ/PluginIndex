@@ -25,9 +25,11 @@ jobs:
           Expand-Archive -Path ClassIsland.PluginIndexGenerator.zip -DestinationPath .
       
       - name: Generate Plugin Index
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir out/source/
-          ./ClassIsland.PluginIndexGenerator.exe index out/source/index.json -b base.json
+          ./ClassIsland.PluginIndexGenerator.exe index out/source/index.json -b base.json -t $env:GITHUB_TOKEN
           7z a "./out/index.zip" ./out/source/* -r -mx=9
           rm -r -Force out/source/
           
