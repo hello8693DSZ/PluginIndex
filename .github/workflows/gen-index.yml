@@ -31,7 +31,6 @@ jobs:
           mkdir out/source/
           ./ClassIsland.PluginIndexGenerator.exe index out/source/index.json -b base.json -t $env:GITHUB_TOKEN
           7z a "./out/index.zip" ./out/source/* -r -mx=9
-          rm -r -Force out/source/
           
       - name: Generate MD5
         run: |
